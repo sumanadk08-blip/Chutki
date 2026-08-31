@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Sanu 💖</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: linear-gradient(135deg, #111111 0%, #2b0008 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      color: #fff;
+    }
+
+    /* Floating Hearts Screen 4 */
+    .heart-bg {
+      position: fixed;
+      top: -10vh;
+      color: #ff4d6d;
+      font-size: 24px;
+      animation: fall 4s linear infinite;
+      z-index: 1;
+      pointer-events: none;
+    }
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(360deg); }
+    }
+
+    /* Card Box */
+    .card {
+      background: rgba(30, 30, 30, 0.95);
+      border: 2px solid #ff4d6d;
+      padding: 25px 20px;
+      border-radius: 24px;
+      box-shadow: 0 15px 35px rgba(255, 77, 109, 0.4);
+      width: 90%;
+      max-width: 360px;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      margin: 20px 0;
+    }
+
+    h2 { color: #ff4d6d; margin-bottom: 12px; font-size: 20px; }
+    p { color: #ddd; font-size: 14px; margin-bottom: 15px; line-height: 1.5; }
+
+    /* Keypad Grid */
+    .passcode-display {
+      background: #000;
+      border: 2px solid #ff4d6d;
+      border-radius: 12px;
+      padding: 10px;
+      font-size: 22px;
+      letter-spacing: 5px;
+      margin-bottom: 15px;
+      color: #ff4d6d;
+      min-height: 45px;
+    }
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    .key {
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .key:active { transform: scale(0.95); }
+
+    /* Buttons */
+    .btn {
+      background-color: #ff4d6d;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(255, 77, 109, 0.4);
+      margin: 5px;
+    }
+    .btn-no {
+      background-color: #555;
+      position: absolute;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 15px;
+      position: relative;
+      height: 60px;
+    }
+
+    /* Images */
+    .img-preview {
+      width: 100%;
+      max-height: 220px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 2px solid #ff4d6d;
+      margin-bottom: 15px;
+    }
+    .img-circle {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #ff4d6d;
+      margin-bottom: 15px;
+    }
+
+    /* Grid Icons for Screen 3 */
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .icon-box {
+      background: #2a2a2a;
+      border: 2px solid #ff4d6d;
+      border-radius: 16px;
+      padding: 20px 10px;
+      font-size: 35px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .icon-box:active { transform: scale(0.95); }
+    .icon-box span { display: block; font-size: 13px; color: #fff; margin-top: 5px; }
+
+    /* Writable Gift Note */
+    textarea {
+      width: 100%;
+      height: 100px;
+      background: #222;
+      border: 2px solid #ff4d6d;
+      color: #fff;
+      border-radius: 12px;
+      padding: 10px;
+      outline: none;
+      font-family: inherit;
+      resize: none;
+      margin-bottom: 15px;
+    }
+
+    /* Letter Border Box */
+    .letter-box {
+      background: #fff;
+      color: #222;
+      border: 8px solid #cc0000;
+      border-radius: 16px;
+      padding: 15px;
+      text-align: left;
+      font-size: 13px;
+      line-height: 1.6;
+      max-height: 250px;
+      overflow-y: auto;
+      margin-bottom: 15px;
+    }
+    .letter-box h3 { color: #cc0000; text-align: center; margin-bottom: 8px; font-size: 15px; }
+
+    /* Rating Buttons */
+    .rating-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin: 15px 0;
+    }
+    .rate-btn {
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <!-- SCREEN 1: PASSCODE -->
+  <div id="screen1" class="card">
+    <h2>Enter the SECRET CODE 🔒</h2>
+    <img src="https://i.imgur.com/p2DqJWq.jpeg" class="img-preview" alt="Us">
+    <div id="passDisplay" class="passcode-display">________</div>
+    <div class="keypad">
+      <button class="key" onclick="pressNum('1')">1</button>
+      <button class="key" onclick="pressNum('2')">2</button>
+      <button class="key" onclick="pressNum('3')">3</button>
+      <button class="key" onclick="pressNum('4')">4</button>
+      <button class="key" onclick="pressNum('5')">5</button>
+      <button class="key" onclick="pressNum('6')">6</button>
+      <button class="key" onclick="pressNum('7')">7</button>
+      <button class="key" onclick="pressNum('8')">8</button>
+      <button class="key" onclick="pressNum('9')">9</button>
+      <button class="key" onclick="clearPass()">C</button>
+      <button class="key" onclick="pressNum('0')">0</button>
+      <button class="key" onclick="checkPass()">OK</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: CAT PROMPT -->
+  <div id="screen2" class="card hidden">
+    <img src="https://i.imgur.com/A4dFMZJ.jpeg" class="img-preview" alt="Cat">
+    <h2>Do you wanna see what I made for you, chutki? 🥺💕</h2>
+    <div class="btn-container">
+      <button class="btn" onclick="goToScreen(3)">YES! 💖</button>
+      <button class="btn btn-no" id="noBtn" ontouchstart="moveNoBtn()" onclick="moveNoBtn()">NO 😜</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: 4 ICONS GRID -->
+  <div id="screen3" class="card hidden">
+    <h2>Pick a Surprise! 🎁✨</h2>
+    <div class="icon-grid">
+      <div class="icon-box" onclick="showSubScreen('camera')">📸<span>Camera</span></div>
+      <div class="icon-box" onclick="showSubScreen('bouquet')">🌺<span>Spider Lily</span></div>
+      <div class="icon-box" onclick="showSubScreen('letter')">✉️<span>Letter</span></div>
+      <div class="icon-box" onclick="showSubScreen('gift')">🎁<span>Gift Note</span></div>
+    </div>
+    <button class="btn" onclick="goToScreen(4)">Next ➡️</button>
+  </div>
+
+  <!-- SUB-SCREEN: CAMERA -->
+  <div id="subCamera" class="card hidden">
+    <h2>Look, this is my babe! 📸✨</h2>
+    <img src="https://i.imgur.com/rMg0F6c.jpeg" class="img-preview" alt="Her Photo">
+    <p>Isn’t she cute? She is only mine, don’t stare at her! 🙈💖</p>
+    <button class="btn" onclick="closeSubScreen()">Back ↩️</button>
+  </div>
+
+  <!-- SUB-SCREEN: BOUQUET -->
+  <div id="subBouquet" class="card hidden">
+    <h2>For My Sanu 🌺✨</h2>
+    <img src="https://i.imgur.com/ra368Zw.jpeg" class="img-preview" alt="Spider Lily Garden">
+    <p>A bouquet isn’t enough for my sanu, here is a full garden for you! 💐❤️</p>
+    <button class="btn" onclick="closeSubScreen()">Back ↩️</button>
+  </div>
+
+  <!-- SUB-SCREEN: LETTER -->
+  <div id="subLetter" class="card hidden">
+    <div class="letter-box">
+      <h3>A small message for the most beautiful girl in the world 🌺✨</h3>
+      <p>Hello my dear chutki, how are you doing?</p>
+      <p>I hope you are doing well right now. I want to say so many things, but they won't all fit in here! I just want to tell you that you are the reason I am getting laughter and enjoyment back in my life. Ever since you came into my life, I have been so happy I can't even express it. I am just so thankful for you, and I promise I will never ever let you down or disappoint you, because your happiness means everything to me. I love you so much, meri maya! 😘</p>
+    </div>
+    <button class="btn" onclick="closeSubScreen()">Back ↩️</button>
+  </div>
+
+  <!-- SUB-SCREEN: GIFT NOTE -->
+  <div id="subGift" class="card hidden">
+    <h2>Make a Wish! 📝🎁</h2>
+    <p>Write anything you need or want here, chutki:</p>
+    <textarea placeholder="Type your wishlist here..."></textarea>
+    <button class="btn" onclick="closeSubScreen()">Save & Back ↩️</button>
+  </div>
+
+  <!-- SCREEN 4: HER PHOTO & HEARTS -->
+  <div id="screen4" class="card hidden">
+    <img src="https://i.imgur.com/XJB4Cbm.jpeg" class="img-circle" alt="Sani">
+    <h2>I love you so much sani 😘💖</h2>
+    <p>You make my world so complete! ✨</p>
+    <button class="btn" onclick="goToScreen(5)">Next ➡️</button>
+  </div>
+
+  <!-- SCREEN 5: RATING -->
+  <div id="screen5" class="card hidden">
+    <h2>Rate this surprise out of 10! ⭐</h2>
+    <p>Be honest... 😜</p>
+    <div class="rating-grid">
+      <button class="rate-btn" onclick="failRate()">1</button>
+      <button class="rate-btn" onclick="failRate()">2</button>
+      <button class="rate-btn" onclick="failRate()">3</button>
+      <button class="rate-btn" onclick="failRate()">4</button>
+      <button class="rate-btn" onclick="failRate()">5</button>
+      <button class="rate-btn" onclick="failRate()">6</button>
+      <button class="rate-btn" onclick="failRate()">7</button>
+      <button class="rate-btn" onclick="failRate()">8</button>
+      <button class="rate-btn" onclick="failRate()">9</button>
+      <button class="rate-btn" onclick="winRate()">10</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 6: FINAL ENDING -->
+  <div id="screenEnd" class="card hidden">
+    <h2>YAYYY 10/10! 🎉💖</h2>
+    <p>Thank you for being the best! I love you forever! 🥰✨</p>
+  </div>
+
+  <script>
+    let currentPass = "";
+    let heartInterval = null;
+
+    // Passcode Logic (20670207)
+    function pressNum(num) {
+      if (currentPass.length < 8) {
+        currentPass += num;
+        document.getElementById('passDisplay').innerText = currentPass;
+      }
+    }
+    function clearPass() {
+      currentPass = "";
+      document.getElementById('passDisplay').innerText = "________";
+    }
+    function checkPass() {
+      if (currentPass === "20670207") {
+        goToScreen(2);
+      } else {
+        alert("Wrong passcode! Try again 😜");
+        clearPass();
+      }
+    }
+
+    // Runaway NO Button
+    function moveNoBtn() {
+      const btn = document.getElementById('noBtn');
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 50);
+      btn.style.position = 'fixed';
+      btn.style.left = x + 'px';
+      btn.style.top = y + 'px';
+    }
+
+    // Navigation Logic
+    function goToScreen(screenNum) {
+      document.querySelectorAll('.card').forEach(el => el.classList.add('hidden'));
+      document.getElementById('screen' + screenNum).classList.remove('hidden');
+
+      if (screenNum === 4) {
+        startHearts();
+      } else {
+        stopHearts();
+      }
+    }
+
+    function showSubScreen(type) {
+      document.getElementById('screen3').classList.add('hidden');
+      if (type === 'camera') document.getElementById('subCamera').classList.remove('hidden');
+      if (type === 'bouquet') document.getElementById('subBouquet').classList.remove('hidden');
+      if (type === 'letter') document.getElementById('subLetter').classList.remove('hidden');
+      if (type === 'gift') document.getElementById('subGift').classList.remove('hidden');
+    }
+
+    function closeSubScreen() {
+      document.querySelectorAll('.card').forEach(el => el.classList.add('hidden'));
+      document.getElementById('screen3').classList.remove('hidden');
+    }
+
+    // Rating Screen Logic
+    function failRate() {
+      alert("Uh oh! That's not 10/10! Try rating again 😜💖");
+      goToScreen(5);
+    }
+    function winRate() {
+      document.querySelectorAll('.card').forEach(el => el.classList.add('hidden'));
+      document.getElementById('screenEnd').classList.remove('hidden');
+    }
+
+    // Floating Hearts Animation for Screen 4
+    function startHearts() {
+      heartInterval = setInterval(() => {
+        const heart = document.createElement('div');
+        heart.classList.add('heart-bg');
+        heart.innerHTML = Math.random() > 0.5 ? '💖' : '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+      }, 300);
+    }
+
+    function stopHearts() {
+      clearInterval(heartInterval);
+      document.querySelectorAll('.heart-bg').forEach(el => el.remove());
+    }
+  </script>
+</body>
+</html>
